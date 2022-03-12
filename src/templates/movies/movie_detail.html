@@ -1,10 +1,8 @@
+<img src="{{ movie.poster.url }}" alt="">
 <p><b>Title: </b>{{ movie.title }}</p>
 <p><b>Year: </b>{{ movie.year }}</p>
 <p><b>Description: </b>{{ movie.description }}</p>
 <p><b>Country: </b>{{ movie.country }}</p>
-
-<img src="{{ movie.poster.url }}" alt="">
-
 
 <p>{% for producers in movie.producers.all %}
    <b>Producer: </b>{{ producers.name }}
@@ -22,4 +20,26 @@
  <p><b>Budget: </b>{{ movie.budget }}$</p>
  <p><b>USA fees: </b>{{ movie.fees_in_usa }}$</p>
  <p><b>World fees: </b>{{ movie.fees_in_world }}$</p>
- <p><b>Draft: </b>{{ movie.draft }}$</p>
+
+
+ <p><h2>Movieshots</h2></p>
+ {% for image in movie.movieshots_set.all %}
+ <img src="{{ image.image.url }}" alt="{{ image.description }}">
+ {% endfor %} 
+
+ <form action="{% url 'add_review' movie.id %}" method="post"> {% csrf_token %}
+   <p><b>Your Comment</b></p>
+   <textarea name="text" cols="30" rows="5"></textarea>
+   <p><b>Name</b></p>
+   <input type="text" name="name">
+   <p><b>Email</b></p>
+   <input type="text" name="email">
+   <button type="submit">Save Review</button>
+ </form>
+
+ <h2>Reviews</h2>
+{% for review in movie.reviews_set.all %}
+<p><b>Author: </b>{{ review.name }}</p>
+<p><b>Text: </b>{{ review.text }}</p>
+<b>----------------</b>
+{% endfor %}
