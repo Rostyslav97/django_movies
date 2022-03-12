@@ -1,0 +1,25 @@
+<p><b>Title: </b>{{ movie.title }}</p>
+<p><b>Year: </b>{{ movie.year }}</p>
+<p><b>Description: </b>{{ movie.description }}</p>
+<p><b>Country: </b>{{ movie.country }}</p>
+
+<img src="{{ movie.poster.url }}" alt="">
+
+
+<p>{% for producers in movie.producers.all %}
+   <b>Producer: </b>{{ producers.name }}
+{% endfor %}</p>
+
+<p>{% for actors in movie.actors.all %}
+   <b>Actors: </b>{{ actors.name }}
+{% endfor %}</p>
+
+<p>{% for genre in movie.genres.all %}
+    <b>Genre: </b>{{ genre.name }}
+ {% endfor %}</p>
+
+ <p><b>World Premiere: </b>{{ movie.world_premiere }}</p>
+ <p><b>Budget: </b>{{ movie.budget }}$</p>
+ <p><b>USA fees: </b>{{ movie.fees_in_usa }}$</p>
+ <p><b>World fees: </b>{{ movie.fees_in_world }}$</p>
+ <p><b>Draft: </b>{{ movie.draft }}$</p>
