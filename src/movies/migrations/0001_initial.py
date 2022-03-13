@@ -128,8 +128,8 @@ class Migration(migrations.Migration):
                 ('movie', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='movies.movie', verbose_name='Film')),
             ],
             options={
-                'verbose_name': 'Film Frame',
-                'verbose_name_plural': 'Film Frames',
+                'verbose_name': 'Movie Shot',
+                'verbose_name_plural': 'Movie Shots',
             },
         ),
     ]

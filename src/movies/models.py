@@ -77,8 +77,8 @@ class MovieShots(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = "Film Frame"
-        verbose_name_plural = "Film Frames"
+        verbose_name = "Movie Shot"
+        verbose_name_plural = "Movie Shots"
 
 class RatingStar(models.Model):
     value = models.PositiveSmallIntegerField("Value", default=0)
