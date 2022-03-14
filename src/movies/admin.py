@@ -104,7 +104,7 @@ class ActorAdmin(admin.ModelAdmin):
 
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
-    list_display = ("star", "movie", "ip")
+    list_display = ("star", "ip")
 
 @admin.register(MovieShots)
 class MovieShotsAdmin(admin.ModelAdmin):
