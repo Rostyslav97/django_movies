@@ -1,10 +1,18 @@
 from django.shortcuts import render, redirect
-from movies.models import Actor, Movie
+from movies.models import Actor, Movie, Genre
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
 from movies.forms import ReviewForm
+from django.db.models import Q
 
-class MoviesView(ListView):
+class GenreYear:
+    def get_genres(self):
+        return Genre.objects.all()
+
+    def get_years(self):
+        return Movie.objects.filter(draft=False).values("year")
+
+class MoviesView(GenreYear, ListView):
     model = Movie
     queryset = Movie.objects.filter(draft=False)
     template_name = "movies/movie_list.html"
@@ -23,10 +31,18 @@ class AddReview(View):
             form.save()
         return redirect(movie.get_absolute_url())
 
-class ActorView(DetailView):
+class ActorView(GenreYear, DetailView):
     model = Actor
     template_name = "movies/actor.html"
     slug_field = "name"
+
+class FilterMoviesView(ListView):
+    def get_queryset(self):
+        queryset = Movie.objects.filter(
+            Q(year__in=self.request.GET.getlist("year")) |
+            Q(genres__in=self.request.GET.getlist("genre"))
+        )
+        return queryset
 
 # class MoviesView(View):
 #     def get(self, request):

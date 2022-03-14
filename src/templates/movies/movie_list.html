@@ -1,3 +1,19 @@
+<form action="{% url 'filter' %}" method="get">
+    <h3>Genres</h3>
+    <p>{% for genre in view.get_genres %}
+        <input type="checkbox" name="genre" value="{{ genre.id }}">
+        {{ genre.name }}
+    {% endfor %}</p>
+
+    <h3>Years</h3>
+    <p>{% for movie in view.get_years %}
+        <input type="checkbox" name="year" value="{{ movie.year }}">
+        {{ movie.year }}   
+    {% endfor %}</p>
+    <button type="submit">Find</button>
+</form>
+
+
 {% for movie in movie_list %}
 <h4><a href="{{ movie.get_absolute_url }}">{{ movie.title }}</a></h4>
 {% endfor %}
