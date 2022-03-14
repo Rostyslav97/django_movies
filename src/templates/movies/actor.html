@@ -1,0 +1,14 @@
+<p><b>Name: </b>{{ actor.name }}
+<p><img src="{{ actor.image.url }}" alt="" width="300" height="360"></p>
+<p><b>Age: </b>{{ actor.age }} years old</p>
+
+
+<p><b>Producer: </b>{% for movie in actor.film_producer.all %}
+   {{ movie.title }}
+{% endfor %}</p>
+
+<p><b>Actor: </b>{% for movie in actor.film_actor.all %}
+   {{ movie.title }}
+{% endfor %}</p>
+
+<p><h2>About {{ actor.name }}</h2>{{ actor.description }}</p>

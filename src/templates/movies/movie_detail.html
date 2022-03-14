@@ -4,12 +4,12 @@
 <p><b>Description: </b>{{ movie.description }}</p>
 <p><b>Country: </b>{{ movie.country }}</p>
 
-<p>{% for producers in movie.producers.all %}
-   <b>Producer: </b>{{ producers.name }}
+<p>{% for producer in movie.producers.all %}
+   <b>Producer: </b><a href="{{ producer.get_absolute_url }}">{{ producer.name }}</a>
 {% endfor %}</p>
 
-<p>{% for actors in movie.actors.all %}
-   <b>Actors: </b>{{ actors.name }}
+<p>{% for actor in movie.actors.all %}
+   <b>Actors: </b><a href="{{ actor.get_absolute_url }}">{{ actor.name }}</a>
 {% endfor %}</p>
 
 <p>{% for genre in movie.genres.all %}

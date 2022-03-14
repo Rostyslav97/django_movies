@@ -23,6 +23,9 @@ class Actor(models.Model):
     def __str__(self):
         return self.name
     
+    def get_absolute_url(self):
+        return reverse("actor_detail", kwargs={"slug": self.name})
+
     class Meta:
         verbose_name = "Actors and producers"
         verbose_name_plural = "Actors and producers"
@@ -47,7 +50,7 @@ class Movie(models.Model):
     year = models.PositiveSmallIntegerField("Release Date", default=2022)
     country = models.CharField("Country", max_length=30)
     producers = models.ManyToManyField(Actor, verbose_name="producer", related_name="film_producer")
-    actors = models.ManyToManyField(Actor, verbose_name="actors", related_name="film_actor")
+    actors = models.ManyToManyField(Actor, verbose_name="actor", related_name="film_actor")
     genres = models.ManyToManyField(Genre, verbose_name="genres")
     world_premiere = models.DateField("World Premiere", default=date.today)
     budget = models.PositiveIntegerField("Budget", default=0, help_text="put amount in dollars")
